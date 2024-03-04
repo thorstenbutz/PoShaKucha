@@ -6,10 +6,10 @@
 
 You will find links, slides and demo code in this repo. Have you given such a presentation yourself? Clone the repo and add your data - or simply send an e-mail/message. 
 
-| Date     | Presenter                                     | Title                                    | Video | Resources |
-| -------- | --------------------------------------------- | ---------------------------------------- | ----- | --------- |
-| Feb 2024 | [Thorsten Butz](https://www.thorsten-butz.de) | Everything You Will Ever Need to KnoEver |       |           |
-|          |                                               |                                          |       |           |
+| Date     | Presenter                                     | Title                                                    | Video                                                        | Lang |
+| -------- | --------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ | ---- |
+| Feb 2024 | [Thorsten Butz](https://www.thorsten-butz.de) | Everything You Will Ever Need to Know About Get-WinEvent | [vimeo.com/thorstenbutz/pk-getwinevent](https://vimeo.com/thorstenbutz/pk-getwinevent) | EN   |
+|          |                                               |                                                          |                                                              |      |
 
 
 

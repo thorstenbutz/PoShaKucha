@@ -9,7 +9,7 @@ You will find links, slides and demo code in this repo. Have you given such a pr
 | Date     | Presenter                                     | Title                                                    | Video                                                        | Lang   |
 | -------- | --------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ | ------ |
 | Feb 2024 | [Thorsten Butz](https://www.thorsten-butz.de) | Everything You Will Ever Need to Know About Get-WinEvent | [vimeo.com/thorstenbutz/pk-getwinevent](https://vimeo.com/thorstenbutz/pk-getwinevent) | EN, DE |
-|          |                                               |                                                          |                                                              |        |
+| Jun 2024 | [Thorsten Butz](https://www.thorsten-butz.de) | about_Epochs                                             |                                                              | EN     |
 
 
 

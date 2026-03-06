@@ -14,7 +14,7 @@ You will find links, slides and demo code in this repo. Have you given such a pr
 | Jun 2024 | [Anders Gregersen](https://x.com/PrimeSyntax)                | Empowerment with declarative language                    | [youtu.be/hHBZDpemcm4](https://youtu.be/hHBZDpemcm4)         | EN     |
 | Jun 2024 | [Seif Bassem](https://x.com/SeifBassem)                      | Azure Verified Modules (AVM)                             | [youtu.be/n6KDWwvCqGc](https://youtu.be/n6KDWwvCqGc)         | EN     |
 | Jun 2025 | [Thorsten Butz](https://www.thorsten-butz.de)                | about_Token_Privileges                                   | [youtu.be/txtQ7iJJvZM](https://youtu.be/txtQ7iJJvZM)         | EN     |
-| Jun 2024 | [Leo Visser](https://bsky.app/profile/autosysops.bsky.social) | Cache online data inside your PowerShell module          | [youtu.be/ThPuQAvoHGM](https://youtu.be/ThPuQAvoHGM)         | EN     |
+| Jun 2025 | [Leo Visser](https://bsky.app/profile/autosysops.bsky.social) | Cache online data inside your PowerShell module          | [youtu.be/ThPuQAvoHGM](https://youtu.be/ThPuQAvoHGM)         | EN     |
 | Jun 2025 | [Frank Lindenblatt](https://x.com/Flittermelint)             | Taming the Matrix with Powershell                        | [youtu.be/8i62QL7lgBA](https://youtu.be/8i62QL7lgBA)         | EN     |
 
 I also recorded an interview with Betyul Hafazoglu about her experiences with the prestine "Pecha Kucha" and her contribution to the 2025 Malmö PSConfEU. You find it here: [youtu.be/BsJD7MgmmZU](https://youtu.be/BsJD7MgmmZU)

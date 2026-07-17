@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PoSh Blue — a developer palette</title>
+<link rel="stylesheet" href="poshakuchalight.css">
+</head>
+<body>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="container nav">
+    <a class="nav__brand" href="#top"><span class="prompt">PS&gt;</span>&nbsp;PoSh&nbsp;Blue</a>
+    <ul class="nav__links">
+      <li><a href="#palette">palette</a></li>
+      <li><a href="#components">components</a></li>
+      <li><a href="#code">usage</a></li>
+      <li><a href="#tokens">tokens</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero">
+    <div class="container stack">
+      <span class="eyebrow">design system · v1</span>
+      <h1>A palette that<br>compiles clean.</h1>
+      <p class="lede">
+        Cool by default — soft <strong>paper</strong>, <strong>PowerShell&nbsp;blue</strong> ink,
+        and white surfaces — lifted by a single warm accent: the
+        <strong>lanyard gold</strong>. Same system as the dark theme, inverted.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--accent" href="#palette">
+          Get the tokens
+          <span aria-hidden="true">→</span>
+        </a>
+        <a class="btn btn--ghost" href="#components">Browse components</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr container" style="max-width:72rem;">
+
+  <!-- ============================ PALETTE ============================ -->
+  <section id="palette">
+    <div class="container stack">
+      <span class="eyebrow">the palette</span>
+      <h2>Five ideas, one system</h2>
+      <p class="text-muted">
+        Each colour earns its place. The two loud Heraldic hues are quarantined
+        into success and danger states, where vividness is the point.
+      </p>
+
+      <div class="swatches" style="margin-top:1.5rem;">
+        <div class="swatch">
+          <div class="swatch__chip" style="background:#000000;"></div>
+          <div class="swatch__meta">
+            <div class="swatch__name">black</div>
+            <div class="swatch__hex">#000000</div>
+            <div class="swatch__role">code panels · the shell</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background:#1A1F2E;"></div>
+          <div class="swatch__meta">
+            <div class="swatch__name">sable</div>
+            <div class="swatch__hex">#1A1F2E</div>
+            <div class="swatch__role">code chrome · Heraldic</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background:#012456;"></div>
+          <div class="swatch__meta">
+            <div class="swatch__name">PowerShell blue</div>
+            <div class="swatch__hex">#012456</div>
+            <div class="swatch__role">brand · headings · ink</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background:#E3B341;"></div>
+          <div class="swatch__meta">
+            <div class="swatch__name">lanyard gold</div>
+            <div class="swatch__hex">#E3B341</div>
+            <div class="swatch__role">hero accent</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background:#E8DCC8;"></div>
+          <div class="swatch__meta">
+            <div class="swatch__name">parchment</div>
+            <div class="swatch__hex">#E8DCC8</div>
+            <div class="swatch__role">warm neutral · Heraldic</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background:#DCE9F7;"></div>
+          <div class="swatch__meta">
+            <div class="swatch__name">paper</div>
+            <div class="swatch__hex">#DCE9F7</div>
+            <div class="swatch__role">surfaces / fills</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background:#457720;"></div>
+          <div class="swatch__meta">
+            <div class="swatch__name">vert</div>
+            <div class="swatch__hex">#457720</div>
+            <div class="swatch__role">success · Heraldic</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background:#88134C;"></div>
+          <div class="swatch__meta">
+            <div class="swatch__name">murrey</div>
+            <div class="swatch__hex">#88134C</div>
+            <div class="swatch__role">danger · Heraldic</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ COMPONENTS ============================ -->
+  <section id="components">
+    <div class="container stack">
+      <span class="eyebrow">components</span>
+      <h2>The kit</h2>
+
+      <!-- buttons + badges row -->
+      <div class="grid" style="margin-top:1rem;">
+        <div class="card stack-sm">
+          <div class="card__eyebrow">Buttons</div>
+          <div style="display:flex; flex-wrap:wrap; gap:.6rem; align-items:center;">
+            <button class="btn btn--accent">Deploy</button>
+            <button class="btn btn--primary">Run task</button>
+            <button class="btn btn--ghost">Cancel</button>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin-top:.4rem;">
+            <button class="btn btn--accent btn--sm">Small</button>
+            <button class="btn btn--sm">Default</button>
+          </div>
+        </div>
+
+        <div class="card stack-sm">
+          <div class="card__eyebrow">Badges</div>
+          <div style="display:flex; flex-wrap:wrap; gap:.5rem;">
+            <span class="badge badge--gold">featured</span>
+            <span class="badge badge--blue">stable</span>
+            <span class="badge badge--success">passing</span>
+            <span class="badge badge--danger">deprecated</span>
+            <span class="badge badge--neutral">draft</span>
+          </div>
+          <p style="margin-top:.6rem;">Soft-tinted, so status colour reads clearly on any surface. Press <kbd>⌘</kbd> <kbd>K</kbd> to search.</p>
+        </div>
+      </div>
+
+      <!-- feature cards -->
+      <div class="grid">
+        <article class="card">
+          <div class="card__eyebrow">Module</div>
+          <h3>Get-Palette</h3>
+          <p>Resolve any base hue into a full token ramp — tints, shades, and WCAG-checked text pairings.</p>
+          <div class="card__foot">
+            <span class="badge badge--success badge--plain">v2.1</span>
+            <span class="text-muted">MIT</span>
+            <a href="#code" style="margin-left:auto;">docs →</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__eyebrow">Module</div>
+          <h3>Test-Contrast</h3>
+          <p>Assert foreground/background ratios in CI. Fails the build when a pairing drops below AA.</p>
+          <div class="card__foot">
+            <span class="badge badge--blue badge--plain">v1.4</span>
+            <span class="text-muted">MIT</span>
+            <a href="#code" style="margin-left:auto;">docs →</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__eyebrow">Module</div>
+          <h3>Export-Theme</h3>
+          <p>Emit the same tokens as CSS variables, JSON, or a PowerShell hashtable. One source of truth.</p>
+          <div class="card__foot">
+            <span class="badge badge--neutral badge--plain">beta</span>
+            <span class="text-muted">MIT</span>
+            <a href="#code" style="margin-left:auto;">docs →</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- note -->
+      <div class="note" style="margin-top:.5rem;">
+        <strong>Heads up —</strong> the code panels stay dark on purpose — the terminal,
+        on a light page. Gold leads as fills and rules; as text it deepens to dark gold.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CODE / USAGE ============================ -->
+  <section id="code">
+    <div class="container stack">
+      <span class="eyebrow">usage</span>
+      <h2>Drop-in tokens</h2>
+      <p class="text-muted">Reference the CSS custom properties directly — no build step, no framework.</p>
+
+      <div class="code" style="margin-top:1rem;">
+        <div class="code__bar">
+          <span class="code__dot"></span>
+          <span class="code__dot"></span>
+          <span class="code__dot code__dot--live"></span>
+          <span class="code__title">app.css</span>
+        </div>
+<pre><span class="tok-com">/* every surface and accent from one file */</span>
+<span class="tok-var">.cta</span> {
+  background: <span class="tok-cmd">var(--c-gold)</span>;
+  color:      <span class="tok-cmd">var(--c-black)</span>;
+}
+<span class="tok-var">.panel</span> {
+  background: <span class="tok-cmd">var(--c-sable)</span>;
+  border:     <span class="tok-cmd">var(--border)</span>;
+  color:      <span class="tok-cmd">var(--c-text)</span>;
+}</pre>
+      </div>
+
+      <div class="code" style="margin-top:1.25rem;">
+        <div class="code__bar">
+          <span class="code__dot"></span>
+          <span class="code__dot"></span>
+          <span class="code__dot code__dot--live"></span>
+          <span class="code__title">PS&gt; build-theme.ps1</span>
+        </div>
+<pre><span class="tok-com"># generate the ramp from the PowerShell blue</span>
+<span class="tok-cmd">Get-Palette</span> <span class="tok-flag">-BaseHex</span> <span class="tok-str">'#012456'</span> <span class="tok-flag">-Accent</span> <span class="tok-str">'#E3B341'</span> `
+  | <span class="tok-cmd">Export-Theme</span> <span class="tok-flag">-As</span> Css <span class="tok-flag">-Path</span> <span class="tok-str">'./style.css'</span>
+
+<span class="tok-ok">✓ 14 tokens written · all pairings pass AA</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ TOKENS TABLE + LANYARD ============================ -->
+  <section id="tokens">
+    <div class="container">
+      <div class="grid" style="grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); align-items:start; gap:2.5rem;">
+
+        <div class="stack">
+          <span class="eyebrow">reference</span>
+          <h2>Token map</h2>
+          <table class="table" style="margin-top:1rem;">
+            <thead>
+              <tr><th>Token</th><th>Hex</th><th>Role</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--c-canvas</code></td><td><code>#F2F6FC</code></td><td>Page background</td></tr>
+              <tr><td><code>--c-surface</code></td><td><code>#FFFFFF</code></td><td>Cards, panels, nav</td></tr>
+              <tr><td><code>--c-blue</code></td><td><code>#012456</code></td><td>Primary brand</td></tr>
+              <tr><td><code>--c-cobalt</code></td><td><code>#1E5BAE</code></td><td>Interactive / borders</td></tr>
+              <tr><td><code>--c-gold</code></td><td><code>#E3B341</code></td><td>Hero accent, links</td></tr>
+              <tr><td><code>--c-warm</code></td><td><code>#E8DCC8</code></td><td>Warm neutral, asides</td></tr>
+              <tr><td><code>--c-ink</code></td><td><code>#010F2A</code></td><td>Body text</td></tr>
+              <tr><td><code>--c-success</code></td><td><code>#457720</code></td><td>Success state</td></tr>
+              <tr><td><code>--c-danger</code></td><td><code>#88134C</code></td><td>Danger state</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="stack center">
+          <span class="eyebrow">signature</span>
+          <div class="lanyard" style="margin-top:1rem;">
+            <div class="lanyard__cord"></div>
+            <div class="lanyard__card">
+              <div class="lanyard__role">Speaker</div>
+              <div class="lanyard__name">PoSh Blue</div>
+              <div class="lanyard__handle">@powershell</div>
+            </div>
+          </div>
+          <p class="text-muted text-sm center" style="margin-top:1.25rem; max-width:24ch; margin-inline:auto;">
+            The gold thread ties the whole system together — literally.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container">
+    <span class="mono text-gold">PS&gt; PoSh Blue</span>
+    <span>A developer palette built from #012456.</span>
+    <span class="spacer"></span>
+    <a href="#top">back to top ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>

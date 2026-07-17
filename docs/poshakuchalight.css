@@ -1,0 +1,541 @@
+/* ============================================================================
+   PoShaKucha — LIGHT MODE
+   ----------------------------------------------------------------------------
+   The same system, inverted. Same colours, same ideas — different roles:
+
+     • the dark blues become INK        (#010F2A body, #012456 headings)
+     • the light tints become SURFACES  (paper, parchment, white)
+     • gold stays the hero accent, but as FILLS and RULES; where gold must be
+       text it becomes "dark gold" #856611 (legible, still golden)
+     • Heraldic vert + murrey use their ORIGINAL darker values — which suit a
+       light background better than the lifted dark-mode ones did.
+
+   Code blocks stay DARK terminal panels, the way developer docs do — it keeps
+   the PowerShell-console identity and bridges both themes.
+
+   Drop-in replacement for style.css: identical class names.
+   ========================================================================== */
+
+:root {
+  /* ---- surfaces (cool, light) ----------------------------------------- */
+  --c-canvas:     #F2F6FC;   /* page — lightest tint of the PowerShell blue */
+  --c-surface:    #FFFFFF;   /* cards, panels, nav                          */
+  --c-surface-2:  #DCE9F7;   /* sunken fills, subtle tint   (Abyssal: paper)*/
+  --c-border-c:   #CFDCEE;   /* hairline borders                            */
+
+  /* ---- ink / text (the dark blues, now foreground) -------------------- */
+  --c-ink:        #010F2A;   /* body text                   (Abyssal: trench)*/
+  --c-heading:    #012456;   /* headings                    (PowerShell blue)*/
+  --c-muted:      #566581;   /* secondary text                              */
+  --c-link:       #14509E;   /* links (a legible cobalt)                    */
+  --c-cobalt:     #1E5BAE;   /* large accents / detail                      */
+
+  /* ---- gold accent (hero) --------------------------------------------- */
+  --c-gold:       #E3B341;   /* fills, rules, focus ring   (the lanyard)    */
+  --c-gold-deep:  #C9992B;   /* gold hover (darker on light)                */
+  --c-gold-ink:   #856611;   /* gold-as-TEXT on light (dark gold)           */
+
+  /* ---- warm neutral --------------------------------------------------- */
+  --c-warm:       #E8DCC8;   /* warm surface for asides   (Heraldic parchment)*/
+
+  /* ---- semantic (Heraldic originals — darker, ideal on light) --------- */
+  --c-success:      #457720;
+  --c-success-tint: #EAF2E1;
+  --c-danger:       #88134C;
+  --c-danger-tint:  #F7E3EC;
+
+  /* ---- dark tokens, reused only by the terminal code block ------------ */
+  --c-term-bg:    #000000;
+  --c-term-bar:   #1A1F2E;
+  --c-term-line:  #232A3D;
+  --c-term-text:  #DCE9F7;
+
+  /* ---- typography ------------------------------------------------------ */
+  --font-mono: ui-monospace, "Cascadia Code", "JetBrains Mono", "SF Mono",
+               "Consolas", monospace;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+               sans-serif;
+
+  --step--1: clamp(0.80rem, 0.77rem + 0.15vw, 0.88rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.20vw, 1.13rem);
+  --step-1:  clamp(1.25rem, 1.18rem + 0.35vw, 1.50rem);
+  --step-2:  clamp(1.56rem, 1.44rem + 0.60vw, 2.00rem);
+  --step-3:  clamp(1.95rem, 1.75rem + 1.00vw, 2.75rem);
+  --step-4:  clamp(2.44rem, 2.10rem + 1.70vw, 3.75rem);
+
+  /* ---- shape & depth --------------------------------------------------- */
+  --radius:    8px;
+  --radius-sm: 5px;
+  --border:    1px solid var(--c-border-c);
+  --shadow:    0 1px 2px rgba(1,36,86,.06), 0 14px 32px -18px rgba(1,36,86,.22);
+  --ring:      0 0 0 2px var(--c-surface), 0 0 0 4px var(--c-gold);
+
+  --measure: 68ch;
+  --gutter:  clamp(1.25rem, 4vw, 2.5rem);
+}
+
+/* ============================================================================
+   RESET & BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--c-ink);
+  background: var(--c-canvas);
+  /* barely-there cool tint (top) and warm tint (far bottom) */
+  background-image:
+    radial-gradient(90rem 50rem at 72% -12%, rgba(30,91,174,.09), transparent 60%),
+    radial-gradient(70rem 40rem at 8% 115%, rgba(227,179,65,.07), transparent 60%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg { display: block; max-width: 100%; }
+::selection { background: var(--c-gold); color: var(--c-ink); }
+
+/* ============================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+h1, h2, h3, h4 {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--c-heading);
+}
+h1 { font-size: var(--step-4); }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-2); font-weight: 500; }
+h4 { font-size: var(--step-1); font-weight: 500; }
+
+p  { max-width: var(--measure); }
+p + p { margin-top: 1em; }
+
+a {
+  color: var(--c-link);
+  text-decoration: none;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color .15s ease;
+}
+a:hover { color: var(--c-heading); text-decoration: underline; text-decoration-color: var(--c-gold); }
+
+strong { color: var(--c-heading); font-weight: 600; }
+small, .text-sm { font-size: var(--step--1); }
+
+/* eyebrow — mono kicker; gold rule + dark-gold text */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-gold-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: .6em;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.6em; height: 2px;
+  background: var(--c-gold);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--c-heading);
+  background: var(--c-surface-2);
+  padding: 0.12em 0.4em;
+  border-radius: var(--radius-sm);
+}
+
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  border: var(--border);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  padding: 0.15em 0.5em;
+}
+
+/* note — parchment aside: the one warm surface, against the cool page */
+.note {
+  border-left: 3px solid var(--c-gold);
+  background: color-mix(in oklab, var(--c-warm) 45%, var(--c-surface));
+  color: var(--c-ink);
+  padding: 1rem 1.25rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: var(--step--1);
+  max-width: var(--measure);
+}
+.note strong { color: var(--c-ink); }
+
+/* ============================================================================
+   LAYOUT
+   ========================================================================== */
+.container { width: 100%; max-width: 72rem; margin-inline: auto; padding-inline: var(--gutter); }
+.container--narrow { max-width: 52rem; }
+
+section { padding-block: clamp(3rem, 8vw, 6rem); }
+
+.stack > * + * { margin-top: 1.25rem; }
+.stack-sm > * + * { margin-top: .6rem; }
+
+.grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+}
+
+.hr { border: none; border-top: var(--border); margin-block: clamp(2rem, 6vw, 4rem); }
+.hr--gold { border-top: 1px solid color-mix(in oklab, var(--c-gold) 55%, transparent); }
+
+/* ============================================================================
+   SITE HEADER  (gold top-rule = the lanyard thread)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-top: 2px solid var(--c-gold);
+  border-bottom: var(--border);
+  background: color-mix(in oklab, var(--c-canvas) 80%, transparent);
+  backdrop-filter: blur(10px);
+}
+.nav { display: flex; align-items: center; gap: 1.5rem; min-height: 4rem; }
+.nav__brand {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--c-heading);
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: baseline;
+  gap: .1em;
+}
+.nav__brand .prompt { color: var(--c-gold-ink); }
+.nav__links {
+  display: flex; gap: 1.25rem; margin-left: auto;
+  list-style: none; padding: 0;
+  font-size: var(--step--1); font-family: var(--font-mono);
+}
+.nav__links a { color: var(--c-muted); }
+.nav__links a:hover { color: var(--c-heading); text-decoration: none; }
+
+/* ============================================================================
+   HERO
+   ========================================================================== */
+.hero { padding-block: clamp(4rem, 12vw, 8rem); }
+.hero h1 { margin-bottom: 1.25rem; }
+.hero .lede {
+  font-size: var(--step-1);
+  color: var(--c-muted);
+  max-width: 46ch;
+  line-height: 1.5;
+}
+.hero .lede strong { color: var(--c-ink); font-weight: 500; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+
+/* ============================================================================
+   BUTTONS
+   ========================================================================== */
+.btn {
+  --_bg: var(--c-surface);
+  --_fg: var(--c-ink);
+  --_bd: var(--c-border-c);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 500;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: .55em;
+  padding: .8em 1.25em;
+  color: var(--_fg);
+  background: var(--_bg);
+  border: 1px solid var(--_bd);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform .12s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+/* gold = the primary, real-world action */
+.btn--accent {
+  --_bg: var(--c-gold);
+  --_fg: var(--c-ink);
+  --_bd: var(--c-gold);
+  font-weight: 600;
+}
+.btn--accent:hover { --_bg: var(--c-gold-deep); --_bd: var(--c-gold-deep); }
+
+/* blue = secondary brand action */
+.btn--primary {
+  --_bg: var(--c-heading);
+  --_fg: #fff;
+  --_bd: var(--c-heading);
+}
+.btn--primary:hover { --_bg: var(--c-cobalt); --_bd: var(--c-cobalt); }
+
+/* ghost = tertiary */
+.btn--ghost {
+  --_bg: transparent;
+  --_fg: var(--c-ink);
+  --_bd: var(--c-border-c);
+}
+.btn--ghost:hover { --_bd: var(--c-gold); --_fg: var(--c-gold-ink); }
+
+.btn--sm { padding: .55em .9em; }
+
+/* ============================================================================
+   CARDS
+   ========================================================================== */
+.card {
+  background: var(--c-surface);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.card:hover {
+  border-color: color-mix(in oklab, var(--c-gold) 55%, var(--c-border-c));
+  transform: translateY(-2px);
+}
+.card__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--c-link);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: .6rem;
+}
+.card h3 { color: var(--c-heading); margin-bottom: .5rem; }
+.card p { color: var(--c-muted); font-size: var(--step--1); }
+.card__foot {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: var(--border);
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+}
+
+/* ============================================================================
+   BADGES  (pale tint + dark legible text)
+   ========================================================================== */
+.badge {
+  --_fg: var(--c-link);
+  --_bg: var(--c-surface-2);
+  --_bd: color-mix(in oklab, var(--c-cobalt) 40%, transparent);
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  padding: .3em .7em;
+  color: var(--_fg);
+  background: var(--_bg);
+  border: 1px solid var(--_bd);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.badge::before {
+  content: "";
+  width: .5em; height: .5em; border-radius: 50%;
+  background: currentColor;
+}
+.badge--gold {
+  --_fg: var(--c-gold-ink);
+  --_bg: color-mix(in oklab, var(--c-gold) 22%, var(--c-surface));
+  --_bd: color-mix(in oklab, var(--c-gold) 55%, transparent);
+}
+.badge--blue {
+  --_fg: var(--c-link);
+  --_bg: color-mix(in oklab, var(--c-cobalt) 14%, var(--c-surface));
+  --_bd: color-mix(in oklab, var(--c-cobalt) 40%, transparent);
+}
+.badge--success {
+  --_fg: var(--c-success);
+  --_bg: var(--c-success-tint);
+  --_bd: color-mix(in oklab, var(--c-success) 40%, transparent);
+}
+.badge--danger {
+  --_fg: var(--c-danger);
+  --_bg: var(--c-danger-tint);
+  --_bd: color-mix(in oklab, var(--c-danger) 35%, transparent);
+}
+.badge--neutral {
+  --_fg: var(--c-muted);
+  --_bg: var(--c-surface-2);
+  --_bd: var(--c-border-c);
+}
+.badge--plain::before { display: none; }
+
+/* ============================================================================
+   CODE BLOCK  (kept DARK — the terminal, on a light page)
+   ========================================================================== */
+.code {
+  background: var(--c-term-bg);
+  border: 1px solid var(--c-term-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  max-width: var(--measure);
+}
+.code__bar {
+  display: flex; align-items: center; gap: .5rem;
+  padding: .7rem 1rem;
+  background: var(--c-term-bar);
+  border-bottom: 1px solid var(--c-term-line);
+}
+.code__dot { width: .7rem; height: .7rem; border-radius: 50%; background: var(--c-term-line); }
+.code__dot--live { background: var(--c-gold); }
+.code__title {
+  margin-left: .5rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: #8A97B0;
+}
+.code pre {
+  margin: 0;
+  padding: 1.1rem 1.25rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  line-height: 1.7;
+  color: var(--c-term-text);
+}
+.tok-cmd  { color: #E3B341; }
+.tok-flag { color: #7BA9DD; }
+.tok-str  { color: #E8DCC8; }
+.tok-var  { color: #1E5BAE; }
+.tok-com  { color: #8A97B0; }
+.tok-ok   { color: #86C94F; }
+
+/* ============================================================================
+   TABLE
+   ========================================================================== */
+.table { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.table th, .table td { text-align: left; padding: .7rem .9rem; border-bottom: var(--border); }
+.table thead th {
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-gold-ink);
+  border-bottom: 1px solid color-mix(in oklab, var(--c-gold) 45%, var(--c-border-c));
+}
+.table tbody tr:hover td { background: color-mix(in oklab, var(--c-surface-2) 55%, transparent); }
+.table td code { color: var(--c-heading); }
+
+/* ============================================================================
+   SWATCHES
+   ========================================================================== */
+.swatches { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); }
+.swatch {
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--c-surface);
+  box-shadow: var(--shadow);
+}
+.swatch__chip { height: 4.5rem; }
+.swatch__meta { padding: .6rem .75rem; }
+.swatch__name { font-family: var(--font-mono); font-size: var(--step--1); color: var(--c-heading); }
+.swatch__hex  { font-family: var(--font-mono); font-size: .72rem; color: var(--c-muted); text-transform: uppercase; }
+.swatch__role { font-size: .72rem; color: var(--c-muted); margin-top: .15rem; }
+
+/* ============================================================================
+   LANYARD  — signature (light card, gold cord)
+   ========================================================================== */
+.lanyard { width: 15rem; margin-inline: auto; text-align: center; }
+.lanyard__cord {
+  height: 2.75rem; width: 2px; margin-inline: auto;
+  background: linear-gradient(var(--c-gold-deep), var(--c-gold));
+  position: relative;
+}
+.lanyard__cord::before {
+  content: "";
+  position: absolute;
+  bottom: -2px; left: 50%;
+  width: 2.4rem; height: 1.2rem;
+  transform: translateX(-50%);
+  border: 2px solid var(--c-gold);
+  border-radius: 999px 999px 0 0;
+  border-bottom: none;
+}
+.lanyard__card {
+  position: relative;
+  margin-top: .9rem;
+  padding: 1.5rem 1.25rem 1.25rem;
+  background: linear-gradient(180deg, var(--c-surface-2), var(--c-surface));
+  border: 1px solid var(--c-border-c);
+  border-top: 3px solid var(--c-gold);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.lanyard__card::before {
+  content: "";
+  position: absolute;
+  top: -.55rem; left: 50%;
+  width: 1.5rem; height: .5rem;
+  transform: translateX(-50%);
+  background: var(--c-canvas);
+  border: 1px solid var(--c-border-c);
+  border-radius: 999px;
+}
+.lanyard__role { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--c-gold-ink); }
+.lanyard__name { font-family: var(--font-mono); font-size: var(--step-1); color: var(--c-heading); margin-top: .35rem; line-height: 1.15; }
+.lanyard__handle { font-size: var(--step--1); color: var(--c-link); margin-top: .3rem; }
+
+/* ============================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  border-top: var(--border);
+  padding-block: 2.5rem;
+  color: var(--c-muted);
+  font-size: var(--step--1);
+}
+.site-footer .container { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; }
+.site-footer a { color: var(--c-muted); }
+.site-footer a:hover { color: var(--c-gold-ink); text-decoration: none; }
+.site-footer .spacer { margin-left: auto; }
+
+/* ============================================================================
+   UTILITIES
+   ========================================================================== */
+.text-gold  { color: var(--c-gold-ink); }
+.text-warm  { color: var(--c-gold-ink); }
+.text-muted { color: var(--c-muted); }
+.text-blue  { color: var(--c-link); }
+.mono       { font-family: var(--font-mono); }
+.surface    { background: var(--c-surface); }
+.center     { text-align: center; }
+
+/* ============================================================================
+   ACCESSIBILITY FLOOR
+   ========================================================================== */
+:where(a, button, .btn, input, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
